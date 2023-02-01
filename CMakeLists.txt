@@ -304,11 +304,12 @@ if (LINUX)
         link_libraries(libc++.a)
         link_libraries(libc++abi.a)
     endif()
+    link_libraries("-lm")
 
     # Only linux, clang doesn't want to use a shared library that is not PIC.
     # /usr/bin/ld: ../bluegl/libbluegl.a(BlueGL.cpp.o): relocation R_X86_64_32S
     # against `.bss' can not be used when making a shared object; recompile with -fPIC
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -fno-builtin")
 endif()
 
 if (ANDROID)
